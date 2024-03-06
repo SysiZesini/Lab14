@@ -1,0 +1,53 @@
+﻿<Window x:Class="Lab14.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab14"
+        mc:Ignorable="d"
+        Icon = "Icon/icon.png" 
+        Title="ToDo" Height="450" Width="400">
+    <Grid Background="#FFFDFAF1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"></RowDefinition>
+            <RowDefinition Height="0.85*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock FontSize="26" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0">Список дел</TextBlock>
+        <Button Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 5 10 5" Click="button_Add_Click"  Name="buttonAdd" Background="#5EBEC4"  >
+            <Image Source="Icon/add.png"></Image>
+        </Button>
+
+        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="Gray" BorderThickness="1" Margin="5 5 5 0" Background="#FDF5DF" GridLinesVisibility="Horizontal" Name="DataGridCase" HeadersVisibility="None" AutoGenerateColumns="false" >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox Name="DoingCheckBox" Click="DoingCheckBox_Click" IsChecked="{Binding Path=DoingS}"></CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Width="2*" Binding="{Binding Path=NameS}"></DataGridTextColumn>
+                <DataGridTextColumn Width="1*" Binding="{Binding Path=DateDoS}"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button MaxHeight="10" MaxWidth="10" Click="Button_Delete_Click" Background="#5EBEC4">
+                                <Image Source="Icon/delete.png"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=DiscrS}"></TextBlock>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+    </Grid>
+</Window>
